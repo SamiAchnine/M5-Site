@@ -37,11 +37,30 @@ function showGames() {
         // open paragraph
         gameInfo += "<p>";
 
+        // display game location
+        if (gameLocations[i] === "h") {
+            gameInfo += "vs. ";
+        }
+        else if (gameLocations[i] === "a") {
+            gameInfo += "@ ";
+        }
+
         // include opponent
         gameInfo += gameOpponents[i] + "<br>";
 
         // include result and score
         gameInfo += gameResults[i] + ": (" + runsScored[i] + " - " + runsAllowed[i] + ")";
+
+        // display innings played for suspended, shortened, or extra inning games
+        if (gameInnings[i] < 5){
+            gameInfo += " [" + gameInnings[i] + "]***";
+        }
+        else if (gameInnings[i] < 9) {
+            gameInfo += " [" + gameInnings[i] + "]*";
+        }
+        else if (gameInnings[i] > 9){
+            gameInfo += " [" + gameInnings[i] + "]";
+        }
 
         // close paragraph
         gameInfo += "</p>";
