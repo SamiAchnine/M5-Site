@@ -12,3 +12,42 @@
 
 // days of the week
 let weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+window.addEventListener("load", addWeekdays);
+
+// function to write weekday names into the calendar
+function addWeekdays() {
+    let i = 0; // counter initial value
+
+    let headingCells = document.getElementsByTagName("th"); // reference the heading cells
+
+    // write each day into the heading cell
+    while (i < 7) {
+        headingCells[i].innerHTML = weekDays[i];
+        i++; // go to the next heading cell
+    }
+};
+
+window.addEventListener("load", showGames);
+
+function showGames() {
+    for (let i = 0; i < gameDates.length; i++){
+        let gameInfo = "";
+
+        // open paragraph
+        gameInfo += "<p>";
+
+        // include opponent
+        gameInfo += gameOpponents[i] + "<br>";
+
+        // include result and score
+        gameInfo += gameResults[i] + ": (" + runsScored[i] + " - " + runsAllowed[i] + ")";
+
+        // close paragraph
+        gameInfo += "</p>";
+
+        // write information to table cell
+        let tableCell = document.getElementById(gameDates[i]);
+        tableCell.insertAdjacentHTML("beforeEnd", gameInfo);
+    }
+}
